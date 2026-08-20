@@ -105,7 +105,11 @@
     align-items:center;
     gap:2px;
   }
-  nav.menu a{
+  nav.menu > .dropdown{
+    position:relative;
+  }
+  nav.menu > .dropdown > a,
+  nav.menu > a{
     position:relative;
     font-family:'Oswald', sans-serif;
     font-size:13.5px;
@@ -116,8 +120,12 @@
     padding:10px 16px;
     border-radius:6px;
     transition:color .25s ease, background .25s ease;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
   }
-  nav.menu a::after{
+  nav.menu > .dropdown > a::after{
     content:"";
     position:absolute;
     left:16px;
@@ -129,8 +137,61 @@
     transform-origin:left;
     transition:transform .25s ease;
   }
-  nav.menu a:hover{ color:var(--orange); background:rgba(238,100,35,0.06); }
-  nav.menu a:hover::after{ transform:scaleX(1); }
+  nav.menu > .dropdown > a:hover::after{ transform:scaleX(1); }
+  nav.menu > .dropdown > a:hover{ color:var(--orange); background:rgba(238,100,35,0.06); }
+  nav.menu > a:hover{ color:var(--orange); background:rgba(238,100,35,0.06); }
+  nav.menu > a::after{
+    content:"";
+    position:absolute;
+    left:16px;right:16px;bottom:6px;
+    height:2px;
+    background:var(--orange);
+    transform:scaleX(0);
+    transform-origin:left;
+    transition:transform .25s ease;
+  }
+  nav.menu > a:hover::after{ transform:scaleX(1); }
+  .dropdown-arrow{
+    width:10px;height:10px;
+    transition:transform .25s ease;
+  }
+  .dropdown:hover > a .dropdown-arrow{ transform:rotate(180deg); }
+
+  .dropdown-content{
+    display:none;
+    position:absolute;
+    top:calc(100% + 8px);
+    left:50%;
+    transform:translateX(-50%);
+    background:var(--white);
+    border:1px solid var(--line-dark);
+    border-radius:10px;
+    box-shadow:0 16px 40px -8px rgba(10,22,40,0.18);
+    padding:12px 0;
+    min-width:240px;
+    z-index:200;
+    max-height:420px;
+    overflow-y:auto;
+  }
+  .dropdown:hover > .dropdown-content{
+    display:block;
+  }
+  .dropdown-content a{
+    display:block;
+    font-family:'Inter', sans-serif;
+    font-size:13px;
+    font-weight:400;
+    letter-spacing:0.01em;
+    text-transform:none;
+    color:var(--ink);
+    padding:7px 20px;
+    text-decoration:none;
+    transition:background .15s ease, color .15s ease;
+  }
+  .dropdown-content a:hover{
+    background:rgba(238,100,35,0.07);
+    color:var(--orange);
+  }
 
   .header-cta{
     display:flex;
@@ -591,7 +652,49 @@
 
   /* ---------- Responsive ---------- */
   @media (max-width: 980px){
-    nav.menu{ display:none; }
+    nav.menu{
+      display:none;
+      position:absolute;
+      top:100%;
+      left:0;right:0;
+      background:var(--white);
+      border-bottom:1px solid var(--line-dark);
+      box-shadow:0 16px 40px -8px rgba(10,22,40,0.18);
+      flex-direction:column;
+      align-items:stretch;
+      padding:12px 0;
+      gap:0;
+    }
+    nav.menu.open{ display:flex; }
+    nav.menu > .dropdown{ position:static; }
+    nav.menu > .dropdown > a,
+    nav.menu > a{
+      padding:12px 24px;
+      border-radius:0;
+      justify-content:space-between;
+    }
+    nav.menu > .dropdown > a::after,
+    nav.menu > a::after{ display:none; }
+    .dropdown-content{
+      position:static;
+      transform:none;
+      box-shadow:none;
+      border:none;
+      border-radius:0;
+      display:none;
+      padding:0 0 0 20px;
+      max-height:0;
+      overflow:hidden;
+      transition:max-height .3s ease;
+    }
+    .dropdown-content.open{
+      display:block;
+      max-height:600px;
+    }
+    .dropdown-content a{
+      padding:8px 20px;
+      font-size:12.5px;
+    }
     .burger{
       display:flex;
       width:38px;height:38px;
@@ -627,11 +730,80 @@
     </a>
     <nav class="menu">
       <a href="#accueil">Accueil</a>
-      <a href="#dropin">Drop-in</a>
-      <a href="#reducteurs">Réducteurs</a>
-      <a href="#accouplements">Accouplements</a>
-      <a href="#roulements">Roulements</a>
-      <a href="#sourcing">Sourcing</a>
+
+      <div class="dropdown">
+        <a href="#joints">Joints d'étanchéité <svg class="dropdown-arrow" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="dropdown-content">
+          <a href="#joints-caoutchouc">Joints caoutchouc</a>
+          <a href="#sbr">SBR</a>
+          <a href="#epdm">EPDM</a>
+          <a href="#neoprene">Néoprène</a>
+          <a href="#nbr">NBR</a>
+          <a href="#viton">Viton / FKM</a>
+          <a href="#hypalon">Hypalon / CSM</a>
+          <a href="#silicone">Silicone / VMQ</a>
+          <a href="#butyl">Butyl / IIR</a>
+          <a href="#caoutchouc-cellulaire">Caoutchouc cellulaire</a>
+          <a href="#feuilles-aramide">Feuilles de joints à base de fibre d'aramide</a>
+          <a href="#plaques-graphite">Plaques d'étanchéité graphite / inox</a>
+          <a href="#ptfe">Tubes, barres, plaques et feuilles en Téflon (PTFE)</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <a href="#bourrages">Bourrages &amp; Tresses <svg class="dropdown-arrow" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="dropdown-content">
+          <a href="#tresses-aramide">Tresses fibre d'aramide</a>
+          <a href="#pcy1220">Style PCY 1220</a>
+          <a href="#pcy1240">Style PCY 1240</a>
+          <a href="#pcp2000sd">Style PCP 2000 SD</a>
+          <a href="#tresse-graphite">Tresse en graphite</a>
+          <a href="#garnitures">Garnitures de presse-étoupe</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <a href="#isolation">Isolation &amp; Protection Thermique <svg class="dropdown-arrow" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="dropdown-content">
+          <a href="#fils-verre">Produits à base de fils de verre « E »</a>
+          <a href="#cordons-torsades">Cordons torsadés</a>
+          <a href="#cordons-tricotes">Cordons tricotés</a>
+          <a href="#bourrelets">Bourrelets</a>
+          <a href="#tresses-iso">Tresses</a>
+          <a href="#bandes-tissees">Bandes tissées</a>
+          <a href="#fibres-ceramiques">Produits à base de fibres céramiques</a>
+          <a href="#cordons-ceramiques">Cordons</a>
+          <a href="#bourrelets-ceramiques">Bourrelets</a>
+          <a href="#tresses-ceramiques">Tresses</a>
+          <a href="#rubans">Rubans</a>
+          <a href="#protection-tuyaux">Protection de tuyaux</a>
+          <a href="#applications-iso">Applications</a>
+          <a href="#joints-portes">Joints de portes</a>
+          <a href="#joints-lingotiere">Joints de lingotière</a>
+          <a href="#calorifugeage">Calorifugeage</a>
+          <a href="#protection-thermique">Protection thermique</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <a href="#joints-metal">Joints Métalliques &amp; Semi-Métalliques <svg class="dropdown-arrow" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="dropdown-content">
+          <a href="#joints-spirales">Joints spirales</a>
+          <a href="#joints-echangeurs">Joints métalliques / joints pour échangeurs</a>
+          <a href="#joints-rtj">Joints annulaires type « RTJ »</a>
+          <a href="#joints-kamprofile">Joints KAMProfile</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <a href="#compensateurs">Compensateurs &amp; Joints de Dilatation <svg class="dropdown-arrow" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="dropdown-content">
+          <a href="#manchons-compensateurs">Manchons compensateurs élastomères</a>
+          <a href="#compensateurs-metal">Compensateurs métalliques à soufflets en acier</a>
+          <a href="#compensateurs-textiles">Compensateurs textiles</a>
+        </div>
+      </div>
+
       <a href="#contact">Contact</a>
     </nav>
     <div class="header-cta">
@@ -904,6 +1076,29 @@
     });
   }, { threshold: 0.15 });
   revealEls.forEach(el => io.observe(el));
+
+  // mobile menu toggle
+  const burger = document.querySelector('.burger');
+  const menu = document.querySelector('nav.menu');
+  if(burger && menu){
+    burger.addEventListener('click', () => menu.classList.toggle('open'));
+    document.querySelectorAll('nav.menu .dropdown > a').forEach(trigger => {
+      trigger.addEventListener('click', (e) => {
+        if(window.innerWidth > 980) return;
+        e.preventDefault();
+        const content = trigger.nextElementSibling;
+        content.classList.toggle('open');
+        trigger.closest('.dropdown').classList.toggle('open');
+      });
+    });
+    document.addEventListener('click', (e) => {
+      if(window.innerWidth > 980) return;
+      if(!menu.contains(e.target) && !burger.contains(e.target)){
+        menu.classList.remove('open');
+        menu.querySelectorAll('.dropdown-content.open').forEach(d => d.classList.remove('open'));
+      }
+    });
+  }
 </script>
 
 </body>
