@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NIPROFLEX — Contact</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0A1628;
+    --panel:#0F2340;
+    --panel-2:#132B4E;
+    --steel:#7C8CA3;
+    --steel-light:#B7C0CE;
+    --off:#F3F4F6;
+    --off-2:#E7E9EC;
+    --orange:#EE6423;
+    --orange-2:#FF8A3D;
+    --white:#FFFFFF;
+    --line:rgba(255,255,255,0.08);
+    --line-dark:rgba(10,22,40,0.10);
+    --shadow:0 20px 50px -20px rgba(10,22,40,0.45);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Inter',sans-serif;background:var(--off);color:var(--ink);overflow-x:hidden;}
+  h1,h2,h3,h4{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:0.02em;color:var(--ink);}
+  .mono{font-family:'IBM Plex Mono',monospace;letter-spacing:0.08em;}
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;}
+  img{display:block;max-width:100%;}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 32px;}
+
+  /* Blueprint */
+  .blueprint{position:fixed;inset:0;background-image:linear-gradient(rgba(238,100,35,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(238,100,35,0.035) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0;opacity:0.6;}
+
+  /* Header */
+  header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line-dark);transition:box-shadow .3s ease;}
+  header.scrolled{box-shadow:0 8px 24px -12px rgba(10,22,40,0.25);}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:24px;}
+  .brand{display:flex;align-items:center;gap:12px;}
+  .brand img{height:56px;width:auto;}
+  nav.menu{display:flex;align-items:center;gap:2px;}
+  nav.menu a{position:relative;font-family:'Oswald',sans-serif;font-size:13.5px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink);padding:10px 16px;border-radius:6px;text-decoration:none;transition:color .25s ease,background .25s ease;}
+  nav.menu a::after{content:"";position:absolute;left:16px;right:16px;bottom:6px;height:2px;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform .25s ease;}
+  nav.menu a:hover{color:var(--orange);background:rgba(238,100,35,0.06);}
+  nav.menu a:hover::after{transform:scaleX(1);}
+  nav.menu a.active{color:var(--orange);}
+  nav.menu a.active::after{transform:scaleX(1);}
+  .header-cta{display:flex;align-items:center;gap:14px;}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;padding:12px 22px;border-radius:4px;border:1px solid transparent;cursor:pointer;white-space:nowrap;text-decoration:none;transition:transform .2s ease,box-shadow .2s ease,background .2s ease,color .2s ease;}
+  .btn-primary{background:var(--orange);color:var(--white);box-shadow:0 10px 24px -10px rgba(238,100,35,0.65);}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 30px -10px rgba(238,100,35,0.75);background:var(--orange-2);}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line-dark);}
+  .btn-ghost:hover{border-color:var(--orange);color:var(--orange);}
+  .burger{display:none;}
+
+  /* Hero */
+  .hero{background:var(--ink);color:var(--white);padding:72px 0 80px;position:relative;overflow:hidden;}
+  .hero::after{content:"";position:absolute;right:-120px;top:-80px;width:400px;height:400px;border:60px solid rgba(238,100,35,0.08);border-radius:50%;pointer-events:none;}
+  .hero .wrap{position:relative;z-index:2;}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.18em;color:var(--orange-2);text-transform:uppercase;margin-bottom:18px;}
+  .eyebrow::before{content:"";width:26px;height:2px;background:var(--orange-2);display:inline-block;}
+  .hero h1{font-size:clamp(32px,4.5vw,52px);line-height:1.08;font-weight:600;color:var(--white);margin-bottom:16px;}
+  .hero p{font-size:16px;line-height:1.7;color:var(--steel-light);max-width:580px;margin-bottom:28px;}
+
+  /* Contact Section */
+  .contact-section{padding:64px 0 80px;}
+  .contact-grid{display:grid;grid-template-columns:1fr 380px;gap:48px;align-items:start;}
+
+  /* Form */
+  .form-card{background:var(--white);border:1px solid var(--line-dark);border-radius:14px;padding:40px;box-shadow:var(--shadow);}
+  .form-card h2{font-size:24px;margin-bottom:6px;}
+  .form-card .form-subtitle{color:var(--steel);font-size:14px;margin-bottom:32px;}
+
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .form-group{margin-bottom:20px;}
+  .form-group label{display:block;font-family:'Oswald',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink);margin-bottom:8px;}
+  .form-group label .required{color:var(--orange);margin-left:2px;}
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea{
+    width:100%;padding:13px 16px;font-family:'Inter',sans-serif;font-size:14px;
+    color:var(--ink);background:var(--off);border:1.5px solid var(--line-dark);
+    border-radius:8px;outline:none;transition:border-color .2s ease,box-shadow .2s ease;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus{
+    border-color:var(--orange);box-shadow:0 0 0 3px rgba(238,100,35,0.1);
+  }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder{color:var(--steel);opacity:0.7;}
+  .form-group textarea{resize:vertical;min-height:130px;}
+  .form-group select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%237C8CA3' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:38px;cursor:pointer;}
+
+  /* Radio group */
+  .radio-group{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px;}
+  .radio-group label{display:flex;align-items:center;gap:8px;font-family:'Inter',sans-serif;font-size:13px;font-weight:500;letter-spacing:0;text-transform:none;color:var(--ink);padding:10px 16px;background:var(--off);border:1.5px solid var(--line-dark);border-radius:8px;cursor:pointer;transition:all .2s ease;}
+  .radio-group label:has(input:checked){border-color:var(--orange);background:rgba(238,100,35,0.05);color:var(--orange);}
+  .radio-group input[type="radio"]{appearance:none;width:16px;height:16px;border:2px solid var(--line-dark);border-radius:50%;position:relative;cursor:pointer;transition:border-color .2s ease;}
+  .radio-group input[type="radio"]:checked{border-color:var(--orange);}
+  .radio-group input[type="radio"]:checked::after{content:"";position:absolute;top:3px;left:3px;width:6px;height:6px;background:var(--orange);border-radius:50%;}
+
+  /* File upload */
+  .file-upload{position:relative;display:flex;align-items:center;gap:12px;padding:20px;border:2px dashed var(--line-dark);border-radius:10px;background:var(--off);cursor:pointer;transition:border-color .2s ease;}
+  .file-upload:hover{border-color:var(--orange);}
+  .file-upload input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer;}
+  .file-upload-icon{width:40px;height:40px;border-radius:8px;background:rgba(238,100,35,0.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .file-upload-text{font-size:13px;color:var(--steel);}
+  .file-upload-text strong{color:var(--ink);font-weight:600;}
+  .file-upload-hint{font-size:11.5px;color:var(--steel);opacity:0.7;margin-top:2px;}
+
+  .form-submit{display:flex;align-items:center;gap:16px;margin-top:8px;}
+  .form-submit .btn{padding:15px 36px;font-size:14px;}
+  .form-submit .submit-note{font-size:12px;color:var(--steel);line-height:1.5;max-width:280px;}
+
+  /* Contact info sidebar */
+  .contact-info{display:flex;flex-direction:column;gap:20px;}
+  .info-card{background:var(--white);border:1px solid var(--line-dark);border-radius:14px;padding:28px;transition:border-color .3s ease,box-shadow .3s ease;}
+  .info-card:hover{border-color:var(--orange);box-shadow:var(--shadow);}
+  .info-card-icon{width:44px;height:44px;border-radius:10px;background:rgba(238,100,35,0.08);display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+  .info-card h4{font-size:14px;margin-bottom:6px;color:var(--ink);}
+  .info-card p{font-size:13.5px;line-height:1.6;color:var(--steel);}
+  .info-card a{color:var(--orange);font-weight:500;transition:color .2s ease;}
+  .info-card a:hover{color:var(--orange-2);}
+
+  /* Hours card */
+  .hours-card{background:var(--ink);border-radius:14px;padding:28px;color:var(--white);}
+  .hours-card h4{font-size:14px;margin-bottom:16px;color:var(--white);}
+  .hours-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font-size:13px;}
+  .hours-row:last-child{border-bottom:none;}
+  .hours-row .day{color:var(--steel-light);}
+  .hours-row .time{font-weight:600;color:var(--white);}
+
+  /* Industries strip */
+  .industries{padding:56px 0;background:var(--white);border-top:1px solid var(--line-dark);border-bottom:1px solid var(--line-dark);}
+  .industries-header{text-align:center;margin-bottom:36px;}
+  .industries-header h2{font-size:clamp(22px,2.5vw,30px);}
+  .industries-header p{color:var(--steel);font-size:14px;margin-top:8px;}
+  .industries-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;}
+  .industry-card{background:var(--off);border:1px solid var(--line-dark);border-radius:10px;padding:24px 18px;text-align:center;transition:border-color .3s ease,transform .3s ease;}
+  .industry-card:hover{border-color:var(--orange);transform:translateY(-3px);}
+  .industry-card .industry-icon{width:48px;height:48px;border-radius:10px;background:rgba(238,100,35,0.08);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;}
+  .industry-card h4{font-size:12.5px;letter-spacing:0.04em;margin-bottom:4px;}
+  .industry-card p{font-size:11.5px;color:var(--steel);line-height:1.5;}
+
+  /* CTA */
+  .cta-band{background:var(--orange);color:var(--white);overflow:hidden;position:relative;}
+  .cta-band::before{content:"";position:absolute;right:-60px;top:50%;transform:translateY(-50%);width:340px;height:340px;border:36px solid rgba(255,255,255,0.12);border-radius:50%;}
+  .cta-inner{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:64px 0;position:relative;z-index:2;flex-wrap:wrap;}
+  .cta-inner h2{color:var(--white);font-size:clamp(24px,3vw,34px);max-width:560px;}
+  .cta-inner p{color:rgba(255,255,255,0.85);margin-top:10px;font-size:15px;max-width:480px;}
+  .cta-band .btn-primary{background:var(--ink);box-shadow:0 10px 24px -10px rgba(10,22,40,0.5);}
+  .cta-band .btn-primary:hover{background:#0C1D36;}
+
+  /* Footer */
+  footer{background:var(--ink);color:var(--steel-light);padding:56px 0 28px;}
+  .footer-top{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;padding-bottom:40px;border-bottom:1px solid var(--line);}
+  .footer-brand{max-width:320px;}
+  .footer-brand img{height:44px;margin-bottom:16px;filter:brightness(1.1);}
+  .footer-brand p{font-size:13.5px;line-height:1.7;color:var(--steel);}
+  .footer-cols{display:flex;gap:64px;flex-wrap:wrap;}
+  .footer-col h4{font-size:12px;color:var(--white);letter-spacing:0.1em;margin-bottom:16px;}
+  .footer-col ul li{margin-bottom:10px;}
+  .footer-col a{font-size:13.5px;color:var(--steel);transition:color .2s ease;}
+  .footer-col a:hover{color:var(--orange-2);}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;font-size:12.5px;color:var(--steel);flex-wrap:wrap;gap:12px;}
+  .footer-bottom .mono{font-size:11px;}
+
+  /* Reveal */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* Responsive */
+  @media(max-width:980px){
+    nav.menu{display:none;}
+    nav.menu.open{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(255,255,255,0.98);backdrop-filter:blur(10px);padding:16px;border-bottom:1px solid var(--line-dark);box-shadow:0 8px 24px -12px rgba(10,22,40,0.25);z-index:100;}
+    nav.menu.open a{padding:12px 16px;width:100%;}
+    .burger{display:flex;width:38px;height:38px;border-radius:6px;border:1px solid var(--line-dark);align-items:center;justify-content:center;cursor:pointer;}
+    .contact-grid{grid-template-columns:1fr;}
+    .contact-info{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+    .industries-grid{grid-template-columns:repeat(3,1fr);}
+  }
+  @media(max-width:560px){
+    .wrap{padding:0 20px;}
+    .form-row{grid-template-columns:1fr;}
+    .contact-info{grid-template-columns:1fr;}
+    .industries-grid{grid-template-columns:1fr 1fr;}
+    .form-card{padding:28px 22px;}
+    .form-submit{flex-direction:column;align-items:stretch;}
+    .form-submit .submit-note{text-align:center;max-width:100%;}
+    .radio-group{flex-direction:column;}
+  }
+</style>
+</head>
+<body>
+
+<div class="blueprint"></div>
+
+<header id="siteHeader">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="brand"><img src="logo.jpg" alt="NIPROFLEX"></a>
+    <nav class="menu">
+      <a href="index.html">Accueil</a>
+      <a href="joints.html">Joints caoutchouc</a>
+      <a href="bourrages.html">Bourrages &amp; Tresses</a>
+      <a href="isolation.html">Isolation &amp; Protection Thermique</a>
+      <a href="joints-metal.html">Joints Métalliques &amp; Semi-Métalliques</a>
+      <a href="compensateurs.html">Compensateurs &amp; Joints de Dilatation</a>
+      <a href="contact.html" class="active">Contact</a>
+    </nav>
+    <div class="header-cta">
+      <a href="contact.html" class="btn btn-primary">Demander un devis</a>
+    </div>
+    <div class="burger">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 5h14M2 9h14M2 13h14" stroke="#0A1628" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">NIPROFLEX — Contactez-nous</div>
+      <h1>Contact</h1>
+      <p>Vous avez un projet technique, besoin d'un devis ou d'un conseil en étanchéité industrielle ? Notre équipe d'experts est à votre disposition pour étudier votre demande et vous proposer la solution la plus adaptée.</p>
+    </div>
+  </section>
+
+  <section class="contact-section">
+    <div class="wrap">
+      <div class="contact-grid">
+
+        <!-- FORM -->
+        <div class="form-card reveal">
+          <h2>Envoyez-nous votre demande</h2>
+          <p class="form-subtitle">Remplissez le formulaire ci-dessous — nous répondons sous 24h ouvrées.</p>
+
+          <form id="contactForm" onsubmit="return handleSubmit(event)">
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Nom complet <span class="required">*</span></label>
+                <input type="text" name="name" placeholder="Ex : Ahmed Messkache" required>
+              </div>
+              <div class="form-group">
+                <label>Entreprise <span class="required">*</span></label>
+                <input type="text" name="company" placeholder="Ex : NIPROFLEX SPRL" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Email <span class="required">*</span></label>
+                <input type="email" name="email" placeholder="Ex : contact@entreprise.be" required>
+              </div>
+              <div class="form-group">
+                <label>Téléphone</label>
+                <input type="tel" name="phone" placeholder="Ex : +32 470 12 34 56">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Nature de la demande <span class="required">*</span></label>
+              <div class="radio-group">
+                <label><input type="radio" name="subject" value="devis" checked> Devis technique</label>
+                <label><input type="radio" name="subject" value="info"> Information produit</label>
+                <label><input type="radio" name="subject" value="urgence"> Demande urgente</label>
+                <label><input type="radio" name="subject" value="partenariat"> Partenariat</label>
+                <label><input type="radio" name="subject" value="autre"> Autre</label>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Catégorie de produit</label>
+                <select name="category">
+                  <option value="">— Sélectionner une catégorie —</option>
+                  <option value="joints-caoutchouc">Joints caoutchouc</option>
+                  <option value="bourrages">Bourrages & Tresses</option>
+                  <option value="isolation">Isolation & Protection Thermique</option>
+                  <option value="joints-metal">Joints Métalliques & Semi-Métalliques</option>
+                  <option value="compensateurs">Compensateurs & Joints de Dilatation</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Quantité estimée</label>
+                <input type="text" name="quantity" placeholder="Ex : 200 pièces, 50 mètres…">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Décrivez votre besoin <span class="required">*</span></label>
+              <textarea name="message" placeholder="Décrivez votre application : type de joint, matériau souhaité, dimensions, conditions de service (température, pression, milieu chimique), délais souhaités…" required></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>Pièces jointes</label>
+              <div class="file-upload">
+                <input type="file" name="attachments" multiple accept=".pdf,.jpg,.jpeg,.png,.dwg,.dxf">
+                <div class="file-upload-icon">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3v10M6 9l4-4 4 4M3 14v2a1 1 0 001 1h12a1 1 0 001-1v-2" stroke="#EE6423" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div>
+                  <div class="file-upload-text"><strong>Cliquez pour ajouter</strong> ou glissez vos fichiers ici</div>
+                  <div class="file-upload-hint">PDF, JPG, PNG, DWG, DXF — Max 10 Mo par fichier</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-submit">
+              <button type="submit" class="btn btn-primary">Envoyer la demande</button>
+              <span class="submit-note">En soumettant ce formulaire, vous acceptez notre politique de confidentialité. Vos données ne seront jamais partagées.</span>
+            </div>
+
+          </form>
+        </div>
+
+        <!-- SIDEBAR -->
+        <div class="contact-info">
+
+          <div class="info-card reveal">
+            <div class="info-card-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 5l7 5 7-5M3 5v10a1 1 0 001 1h12a1 1 0 001-1V5M3 5h14" stroke="#EE6423" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h4>Email</h4>
+            <p><a href="mailto:contact@niproflex.be">contact@niproflex.be</a></p>
+          </div>
+
+          <div class="info-card reveal">
+            <div class="info-card-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 3.5h2.5l1.5 3.5-2 1.5a11 11 0 005 5l1.5-2 3.5 1.5V15a1 1 0 01-1 1A14 14 0 013 4.5a1 1 0 011-1z" stroke="#EE6423" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h4>Téléphone</h4>
+            <p>+32 2 588 74 00</p>
+          </div>
+
+          <div class="info-card reveal">
+            <div class="info-card-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 11a3 3 0 100-6 3 3 0 000 6zM10 18s-7-5.5-7-10A7 7 0 1117 8c0 4.5-7 10-7 10z" stroke="#EE6423" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h4>Adresse</h4>
+            <p>Rue de l'Industrie 42<br>1070 Bruxelles, Belgique</p>
+          </div>
+
+          <div class="hours-card reveal">
+            <h4>Horaires d'ouverture</h4>
+            <div class="hours-row"><span class="day">Lundi — Vendredi</span><span class="time">08h00 — 17h30</span></div>
+            <div class="hours-row"><span class="day">Samedi</span><span class="time">09h00 — 12h00</span></div>
+            <div class="hours-row"><span class="day">Dimanche</span><span class="time">Fermé</span></div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- INDUSTRIES -->
+  <section class="industries">
+    <div class="wrap">
+      <div class="industries-header reveal">
+        <h2>Nos secteurs d'intervention</h2>
+        <p>Nous fournissons des solutions d'étanchéité et d'isolation à travers toutes les industries.</p>
+      </div>
+      <div class="industries-grid">
+        <div class="industry-card reveal">
+          <div class="industry-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 18V8l7-5 7 5v10M8 18v-5h6v5" stroke="#EE6423" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h4>Pétrochimie</h4>
+          <p>Raffineries, pétrochimie et production de gaz</p>
+        </div>
+        <div class="industry-card reveal">
+          <div class="industry-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 14h16M5 10h12M7 6h8M9 18h4" stroke="#EE6423" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <h4>Chimie</h4>
+          <p>Industrie chimique et traitement des eaux</p>
+        </div>
+        <div class="industry-card reveal">
+          <div class="industry-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 18l4-6 3 4 4-8 3 5" stroke="#EE6423" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h4>Énergie</h4>
+          <p>Production électrique et nucléaire</p>
+        </div>
+        <div class="industry-card reveal">
+          <div class="industry-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 9h16M3 9v8a1 1 0 001 1h14a1 1 0 001-1V9M7 9V5a4 4 0 018 0v4" stroke="#EE6423" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h4>Agroalimentaire</h4>
+          <p>Industries pharmaceutiques et cosmétiques</p>
+        </div>
+        <div class="industry-card reveal">
+          <div class="industry-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 3l8 4v6c0 4.5-3.5 8-8 9-4.5-1-8-4.5-8-9V7l8-4z" stroke="#EE6423" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h4>Métallurgie</h4>
+          <p>Mines, sidérurgie et traitement des métaux</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-band">
+    <div class="wrap cta-inner">
+      <div>
+        <h2>Une urgence technique&nbsp;?</h2>
+        <p>Pour les demandes urgentes, contactez-nous directement par téléphone — notre équipe est disponible pour intervenir rapidement sur vos problématiques d'étanchéité.</p>
+      </div>
+      <a href="tel:+3225887400" class="btn btn-primary">Appeler maintenant</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="logo.jpg" alt="NIPROFLEX">
+        <p>Matériel et fourniture industrielle : joints d'étanchéité, bourrages, isolations, joints métalliques et compensateurs pour l'industrie.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4 class="mono">Navigation</h4>
+          <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="joints.html">Joints caoutchouc</a></li>
+            <li><a href="bourrages.html">Bourrages &amp; Tresses</a></li>
+            <li><a href="isolation.html">Isolation &amp; Protection Thermique</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="mono">Ressources</h4>
+          <ul>
+            <li><a href="joints-metal.html">Joints Métalliques</a></li>
+            <li><a href="compensateurs.html">Compensateurs</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 NIPROFLEX — Tous droits réservés.</span>
+      <span class="mono">MATÉRIEL &amp; FOURNITURE INDUSTRIELLE</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const header=document.getElementById('siteHeader');
+  window.addEventListener('scroll',()=>{header.classList.toggle('scrolled',window.scrollY>10);});
+  const revealEls=document.querySelectorAll('.reveal');
+  const io=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('in');io.unobserve(entry.target);}});},{threshold:0.15});
+  revealEls.forEach(el=>io.observe(el));
+  const burger=document.querySelector('.burger');
+  const menu=document.querySelector('nav.menu');
+  if(burger&&menu){burger.addEventListener('click',()=>menu.classList.toggle('open'));}
+
+  function handleSubmit(e){
+    e.preventDefault();
+    const form=e.target;
+    const data=new FormData(form);
+    const name=data.get('name');
+    const company=data.get('company');
+    const email=data.get('email');
+    const phone=data.get('phone');
+    const subject=data.get('subject');
+    const category=data.get('category');
+    const quantity=data.get('quantity');
+    const message=data.get('message');
+
+    const subjectLabels={devis:'Devis technique',info:'Information produit',urgence:'Demande urgente',partenariat:'Partenariat',autre:'Autre'};
+    const categoryLabels={
+      'joints-caoutchouc':'Joints caoutchouc',
+      'bourrages':'Bourrages & Tresses',
+      'isolation':'Isolation & Protection Thermique',
+      'joints-metal':'Joints Métalliques & Semi-Métalliques',
+      'compensateurs':'Compensateurs & Joints de Dilatation'
+    };
+
+    let body=`Bonjour NIPROFLEX,%0D%0A%0D%0A`;
+    body+=`Je souhaite vous soumettre une demande concernant : ${subjectLabels[subject] || subject}%0D%0A%0D%0A`;
+    body+=`--- INFORMATIONS DU CLIENT ---%0D%0A`;
+    body+=`Nom : ${name}%0D%0A`;
+    body+=`Entreprise : ${company}%0D%0A`;
+    body+=`Email : ${email}%0D%0A`;
+    if(phone) body+=`Téléphone : ${phone}%0D%0A`;
+    body+=`%0D%0A`;
+    body+=`--- DÉTAILS DE LA DEMANDE ---%0D%0A`;
+    if(category) body+=`Catégorie : ${categoryLabels[category] || category}%0D%0A`;
+    if(quantity) body+=`Quantité estimée : ${quantity}%0D%0A`;
+    body+=`%0D%0A`;
+    body+=`Message :%0D%0A${encodeURIComponent(message)}`;
+
+    const subjectLine=`[NIPROFLEX] ${subjectLabels[subject] || 'Demande'} — ${company}`;
+    window.location.href=`mailto:contact@niproflex.be?subject=${encodeURIComponent(subjectLine)}&body=${body}`;
+
+    const btn=form.querySelector('button[type="submit"]');
+    btn.textContent='Ouverture de votre client mail…';
+    btn.style.background='var(--panel)';
+    setTimeout(()=>{btn.textContent='Envoyer la demande';btn.style.background='';},3000);
+    return false;
+  }
+</script>
+
+</body>
+</html>
