@@ -296,13 +296,16 @@
     justify-content:center;
     box-shadow:inset 0 0 0 1px rgba(255,255,255,0.03), 0 30px 60px -20px rgba(0,0,0,0.6);
   }
-  .gear-core-inner span{
+  .gear-core-inner .nipro,
+  .gear-core-inner .flex{
     font-family:'Oswald', sans-serif;
-    color:var(--orange-2);
     font-weight:700;
-    font-size:26px;
-    letter-spacing:0.05em;
+    font-size:14px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
   }
+  .gear-core-inner .nipro{ color:var(--white); }
+  .gear-core-inner .flex{ color:var(--orange-2); }
 
   .hero-scroll{
     position:absolute;
@@ -674,7 +677,7 @@
             <circle cx="100" cy="100" r="58" stroke="#2A5590" stroke-width="16"/>
           </svg>
           <div class="gear-core">
-            <div class="gear-core-inner"><span>N</span></div>
+            <div class="gear-core-inner"><span class="nipro">NIPRO</span><span class="flex">FLEX</span></div>
           </div>
         </div>
       </div>
