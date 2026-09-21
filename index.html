@@ -269,23 +269,20 @@
     width:120px;
     height:120px;
     border-radius:50%;
-    background:linear-gradient(145deg, var(--panel-2), var(--panel));
+    background:#fff;
     border:1px solid var(--line);
     display:flex;
     align-items:center;
     justify-content:center;
+    overflow:hidden;
     box-shadow:inset 0 0 0 1px rgba(255,255,255,0.03), 0 30px 60px -20px rgba(0,0,0,0.6);
   }
-  .gear-core-inner .nipro,
-  .gear-core-inner .flex{
-    font-family:'Oswald', sans-serif;
-    font-weight:700;
-    font-size:14px;
-    letter-spacing:0.06em;
-    text-transform:uppercase;
+  .gear-core-inner img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    border-radius:50%;
   }
-  .gear-core-inner .nipro{ color:var(--white); }
-  .gear-core-inner .flex{ color:var(--orange-2); }
 
   .hero-scroll{
     position:absolute;
@@ -653,7 +650,7 @@
             <circle cx="100" cy="100" r="58" stroke="#2A5590" stroke-width="16"/>
           </svg>
           <div class="gear-core">
-            <div class="gear-core-inner"><span class="nipro">NIPRO</span><span class="flex">FLEX</span></div>
+            <div class="gear-core-inner"><img src="logo.jpg" alt="NIPROFLEX"></div>
           </div>
         </div>
       </div>
