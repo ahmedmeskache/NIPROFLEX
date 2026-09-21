@@ -125,6 +125,7 @@
   .info-card-icon{width:44px;height:44px;border-radius:10px;background:rgba(238,100,35,0.08);display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
   .info-card h4{font-size:14px;margin-bottom:6px;color:var(--ink);}
   .info-card p{font-size:13.5px;line-height:1.6;color:var(--steel);}
+  .info-card .info-sub{font-size:12.5px;margin-top:4px;}
   .info-card a{color:var(--orange);font-weight:500;transition:color .2s ease;}
   .info-card a:hover{color:var(--orange-2);}
 
@@ -330,7 +331,7 @@
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 5l7 5 7-5M3 5v10a1 1 0 001 1h12a1 1 0 001-1V5M3 5h14" stroke="#EE6423" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
             <h4>Email</h4>
-            <p><a href="mailto:contact@niproflex.be">contact@niproflex.be</a></p>
+            <p><a href="mailto:info@niproflex.com">info@niproflex.com</a></p>
           </div>
 
           <div class="info-card reveal">
@@ -338,7 +339,8 @@
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 3.5h2.5l1.5 3.5-2 1.5a11 11 0 005 5l1.5-2 3.5 1.5V15a1 1 0 01-1 1A14 14 0 013 4.5a1 1 0 011-1z" stroke="#EE6423" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
             <h4>Téléphone</h4>
-            <p>+32 2 588 74 00</p>
+            <p>+32 (0) 488-032-284</p>
+            <p class="info-sub">Fax : +32 (02) 465-54-50</p>
           </div>
 
           <div class="info-card reveal">
@@ -346,7 +348,7 @@
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 11a3 3 0 100-6 3 3 0 000 6zM10 18s-7-5.5-7-10A7 7 0 1117 8c0 4.5-7 10-7 10z" stroke="#EE6423" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
             <h4>Adresse</h4>
-            <p>Rue de l'Industrie 42<br>1070 Bruxelles, Belgique</p>
+            <p>225 Avenue Charles Quint<br>B-1083 Bruxelles (Belgique)</p>
           </div>
 
           <div class="hours-card reveal">
@@ -416,7 +418,7 @@
         <h2>Une urgence technique&nbsp;?</h2>
         <p>Pour les demandes urgentes, contactez-nous directement par téléphone — notre équipe est disponible pour intervenir rapidement sur vos problématiques d'étanchéité.</p>
       </div>
-      <a href="tel:+3225887400" class="btn btn-primary">Appeler maintenant</a>
+      <a href="tel:+32488032284" class="btn btn-primary">Appeler maintenant</a>
     </div>
   </section>
 
@@ -504,7 +506,7 @@
     body+=`Message :%0D%0A${encodeURIComponent(message)}`;
 
     const subjectLine=`[NIPROFLEX] ${subjectLabels[subject] || 'Demande'} — ${company}`;
-    window.location.href=`mailto:contact@niproflex.be?subject=${encodeURIComponent(subjectLine)}&body=${body}`;
+    window.location.href=`mailto:info@niproflex.com?subject=${encodeURIComponent(subjectLine)}&body=${body}`;
 
     const btn=form.querySelector('button[type="submit"]');
     btn.textContent='Ouverture de votre client mail…';
