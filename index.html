@@ -410,12 +410,10 @@
     transition:background .3s ease, transform .3s ease;
     position:relative;
   }
-  .exp-card:hover{ background:var(--ink); transform:translateY(-3px); z-index:2; }
-  .exp-card:hover .exp-num,
-  .exp-card:hover h3,
-  .exp-card:hover p{ color:var(--white); }
-  .exp-card:hover .icon-wrap{ background:var(--orange); }
-  .exp-card:hover .icon-wrap svg{ stroke:var(--white); }
+  .exp-card:hover{ background:rgba(37,99,235,0.07); transform:translateY(-3px); z-index:2; }
+  .exp-card:hover .exp-num{ color:var(--blue); }
+  .exp-card:hover .icon-wrap{ background:rgba(37,99,235,0.12); }
+  .exp-card:hover .icon-wrap svg{ stroke:var(--blue); }
 
   .exp-num{
     font-family:'IBM Plex Mono', monospace;
@@ -684,17 +682,8 @@
     </div>
   </section>
 
-  <!-- EXPERTISE -->
   <section class="expertise section-pad" id="expertise">
     <div class="wrap">
-      <div class="section-head reveal">
-        <div>
-          <div class="section-eyebrow">Domaines d'expertise</div>
-          <h2>Cinq familles de produits, un seul interlocuteur</h2>
-        </div>
-        <p>Joints d'étanchéité, tresses, isolations et compensateurs — chaque produit est sélectionné pour sa fiabilité en environnement industriel exigeant.</p>
-      </div>
-
       <div class="expertise-grid reveal">
         <a href="/joints" class="exp-card">
           <span class="exp-num mono">01</span>
@@ -741,111 +730,6 @@
           <p>Absorption des dilatations thermiques et des vibrations sur vos réseaux de tuyauteries.</p>
         </a>
       </div>
-    </div>
-  </section>
-
-  <!-- GALLERY -->
-  <section class="gallery section-pad" id="galerie">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <div>
-          <div class="section-eyebrow">Références &amp; savoir-faire</div>
-          <h2>Des pièces qui tiennent sur le terrain</h2>
-        </div>
-        <p>Compensateurs, joints d'étanchéité et transmissions — vus en atelier, en stock et installés sur site.</p>
-      </div>
-
-      <div class="bento reveal">
-        <div class="bento-item b1">
-          <img src="compensateurs-installes.jpg" alt="Compensateurs installés sur unité de process">
-          <div class="caption">
-            <span class="cap-eyebrow">Sur site</span>
-            <h4>Compensateurs installés sur unité de process</h4>
-          </div>
-        </div>
-        <div class="bento-item b2">
-          <img src="compensateur-tour.jpg" alt="Compensateur monté sur tour industrielle">
-          <div class="caption">
-            <span class="cap-eyebrow">Installation</span>
-            <h4>Compensateur monté sur tour de process</h4>
-          </div>
-        </div>
-        <div class="bento-item b3">
-          <img src="reducteur.jpg" alt="Réducteur à engrenages">
-          <div class="caption">
-            <span class="cap-eyebrow">Transmission</span>
-            <h4>Réducteurs &amp; trains d'engrenages</h4>
-          </div>
-        </div>
-        <div class="bento-item b4">
-          <img src="compensateurs-stock.jpg" alt="Compensateurs prêts à l'expédition">
-          <div class="caption">
-            <span class="cap-eyebrow">Stock</span>
-            <h4>Compensateurs prêts à l'expédition</h4>
-          </div>
-        </div>
-        <div class="bento-item b5">
-          <img src="engrenage-bleu.jpg" alt="Pignon de précision">
-          <div class="caption">
-            <span class="cap-eyebrow">Précision</span>
-            <h4>Pignons &amp; transmissions</h4>
-          </div>
-        </div>
-        <div class="bento-item b5b">
-          <img src="joints-plats.jpg" alt="Joints d'étanchéité industriels">
-          <div class="caption">
-            <span class="cap-eyebrow">Étanchéité</span>
-            <h4>Joints plats industriels</h4>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- VALUES -->
-  <section class="values section-pad">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <div>
-          <div class="section-eyebrow" style="color:#FF8A3D;">Pourquoi NIPROFLEX</div>
-          <h2 style="color:#fff;">Une fourniture pensée pour la production</h2>
-        </div>
-        <p style="color:var(--steel-light);">Chaque référence est choisie pour limiter vos arrêts de ligne, pas pour remplir un catalogue.</p>
-      </div>
-
-      <div class="values-grid reveal">
-        <div class="val-card">
-          <span class="mono">STOCK</span>
-          <h3>Disponibilité</h3>
-          <p>Pièces courantes maintenues en stock pour répondre aux urgences de production.</p>
-        </div>
-        <div class="val-card">
-          <span class="mono">QUALITÉ</span>
-          <h3>Contrôle rigoureux</h3>
-          <p>Chaque référence est vérifiée avant expédition pour garantir sa conformité.</p>
-        </div>
-        <div class="val-card">
-          <span class="mono">SUR-MESURE</span>
-          <h3>Sourcing dédié</h3>
-          <p>Recherche de références spécifiques ou obsolètes auprès de notre réseau de fabricants.</p>
-        </div>
-        <div class="val-card">
-          <span class="mono">TERRAIN</span>
-          <h3>Accompagnement technique</h3>
-          <p>Une équipe qui comprend vos contraintes d'exploitation, pas seulement vos commandes.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta-band" id="contact">
-    <div class="wrap cta-inner">
-      <div>
-        <h2>Une pièce à trouver, un projet à sourcer&nbsp;?</h2>
-        <p>Décrivez-nous votre besoin — référence, quantité, délai — et notre équipe technique revient vers vous avec une solution.</p>
-      </div>
-      <a href="/contact" class="btn btn-primary">Nous contacter</a>
     </div>
   </section>
 
