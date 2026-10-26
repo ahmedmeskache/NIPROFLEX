@@ -311,6 +311,17 @@
   }
   @keyframes slide{ 0%{left:-100%;} 50%{left:0;} 100%{left:100%;} }
 
+  /* ---------- Hero photo ---------- */
+  .hero-photo{ padding:48px 0 0; }
+  .hero-photo .wrap{ display:flex; justify-content:center; }
+  .hero-photo img{
+    width:100%;
+    max-width:1080px;
+    height:auto;
+    border-radius:10px;
+    box-shadow:0 24px 50px -28px rgba(10,22,40,0.45);
+  }
+
   /* ---------- Section shared ---------- */
   section{ position:relative; z-index:1; }
   .section-pad{ padding:96px 0; }
@@ -619,6 +630,13 @@
 </header>
 
 <main id="accueil">
+
+  <!-- HERO PHOTO -->
+  <section class="hero-photo">
+    <div class="wrap">
+      <img src="photo-accueil.jpg" alt="NIPROFLEX — Matériel et fourniture industrielle">
+    </div>
+  </section>
 
   <!-- EXPERTISE -->
   <section class="expertise section-pad" id="expertise">
